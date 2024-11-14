@@ -6,15 +6,17 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane fx:id="root" dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22">
+<SplitPane fx:id="root" dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
   <items>
       <VBox spacing="5.0">
          <children>
-            <TableView fx:id="alumTable">
+            <TableView fx:id="alumTable" VBox.vgrow="SOMETIMES">
               <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Nombre" />
                 <TableColumn fx:id="surnameColumn" prefWidth="75.0" text="Apellidos" />
@@ -26,8 +28,22 @@
             </TableView>
             <HBox alignment="BOTTOM_RIGHT" spacing="5.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onNuevoAction" text="Nuevo" />
-                  <Button mnemonicParsing="false" onAction="#onDeleteAction" text="Eliminar" />
+                  <Button mnemonicParsing="false" onAction="#onNuevoAction" text="Nuevo">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/add-32x32.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button mnemonicParsing="false" onAction="#onDeleteAction" text="Eliminar">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/del-32x32.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
             </HBox>
          </children>

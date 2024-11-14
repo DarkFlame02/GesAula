@@ -1,4 +1,4 @@
-package dad.gesaula.ui.model;
+package dad.gesaula.model;
 
 import java.time.LocalDate;
 

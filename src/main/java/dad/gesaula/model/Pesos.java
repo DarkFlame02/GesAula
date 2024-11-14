@@ -1,4 +1,4 @@
-package dad.gesaula.ui.model;
+package dad.gesaula.model;
 
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlType;
