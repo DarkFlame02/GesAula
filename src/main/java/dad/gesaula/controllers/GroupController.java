@@ -84,7 +84,7 @@ public class GroupController implements Initializable {
 
         }
 
-        if (newValue !=null) {
+        if (newValue != null) {
             denomText.textProperty().bindBidirectional(newValue.denominacionProperty());
             incioDate.valueProperty().bindBidirectional(newValue.iniCursoProperty());
             finDate.valueProperty().bindBidirectional(newValue.finCursoProperty());

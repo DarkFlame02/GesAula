@@ -12,17 +12,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AlumnoController implements Initializable {
+
+    // controllers
+
+    AlumnoSplitController alumnoSplitController = new AlumnoSplitController();
 
     // model
 
@@ -32,8 +36,7 @@ public class AlumnoController implements Initializable {
             )
     );
 
-    private ObjectProperty<Alumno> selectedFriend = new SimpleObjectProperty<>();
-
+    private ObjectProperty<Alumno> selectedAlumno = new SimpleObjectProperty<>();
 
     // view
 
@@ -68,6 +71,21 @@ public class AlumnoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        alumTable.setItems(alumnos);
+
+        nameColumn.setCellValueFactory(v -> v.getValue().nombreProperty());
+        surnameColumn.setCellValueFactory(v -> v.getValue().apellidosProperty());
+        birthDateColumn.setCellValueFactory(v -> v.getValue().fechaNacimientoProperty());
+
+        selectedAlumno.bind(alumTable.getSelectionModel().selectedItemProperty());
+
+        selectedAlumno.addListener((o, ov, nv) -> {
+            if (nv != null) {
+                alumnoSplitController.selectedAlumnoProperty().set(nv);
+                alumnPane.setCenter(alumnoSplitController.getRoot());
+            }
+        });
+
     }
 
     public SplitPane getRoot() {
@@ -76,6 +94,15 @@ public class AlumnoController implements Initializable {
 
     @FXML
     void onDeleteAction(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar alumno");
+        alert.setHeaderText("Se va a eliminar al alumno '" + selectedAlumno.get().getNombre() + " " + selectedAlumno.get().getApellidos() + "'");
+        alert.setContentText("¿Está seguro?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            alumnos.remove(selectedAlumno.get());
+        }
 
     }
 

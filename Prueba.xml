@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<grupo denominacion="prueba">
+    <alumnos>
+        <apellidos>Perez</apellidos>
+        <fechaNacimiento>2024-10-02</fechaNacimiento>
+        <nombre>Pepe</nombre>
+        <repite>true</repite>
+        <sexo>HOMBRE</sexo>
+    </alumnos>
+    <alumnos>
+        <apellidos>Marrana</apellidos>
+        <fechaNacimiento>2024-11-20</fechaNacimiento>
+        <nombre>Mara</nombre>
+        <repite>false</repite>
+        <sexo>MUJER</sexo>
+    </alumnos>
+    <finCurso>2024-12-08</finCurso>
+    <iniCurso>2024-10-28</iniCurso>
+    <pesos actitud="11.7359413202934" examenes="50.61124694376527" practicas="33.98533007334964"/>
+</grupo>

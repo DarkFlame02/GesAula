@@ -18,11 +18,15 @@ import java.util.ResourceBundle;
 
 public class RootController implements Initializable {
 
-    //model
+    // controllers
 
     private GroupController groupController = new GroupController();
     private AlumnoController alumnoController = new AlumnoController();
-    private StringProperty groupFileName = new SimpleStringProperty();
+    private AlumnoSplitController alumnoSplitController = new AlumnoSplitController();
+
+    //model
+
+    private StringProperty fileName = new SimpleStringProperty();
 
     // view
 
@@ -52,7 +56,9 @@ public class RootController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         groupTab.setContent(groupController.getRoot());
         alumTab.setContent(alumnoController.getRoot());
-        groupFileName.bind(nameText.textProperty().concat(".xml"));
+        fileName.bind(nameText.textProperty().concat(".xml"));
+        groupController.setGrupo(new Grupo());
+        groupController.getGrupo().setAlumnos(alumnoController.getAlumnos());
     }
 
     public BorderPane getRoot() {
@@ -62,12 +68,14 @@ public class RootController implements Initializable {
     @FXML
     void onNewAction(ActionEvent event) {
         groupController.setGrupo(new Grupo());
+        alumnoController.getAlumnos().setAll();
     }
 
     @FXML
     void onSaveAction(ActionEvent event) {
         try {
-            groupController.getGrupo().save(new File(groupFileName.get()));
+            groupController.getGrupo().setAlumnos(alumnoController.getAlumnos());
+            groupController.getGrupo().save(new File(fileName.get()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
